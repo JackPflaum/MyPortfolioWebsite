@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Projects{% endblock %}
+
+
+{% block content %}
+
+<h3 class="text-center">Projects</h3>
+<p class="text-center">Here is some of my latest work</p>
+<hr>
+<div class="container">
+    <div class="row">
+        {% for project in projects %}
+        <div class="col-lg-6 col-md-8 col-sm-10"> 
+            <div class="card text-center">
+                <a class="card-link" href="{% url 'project_details' slug=project.slug %}">
+                    <img class="card-img-top" src="{{ project.image.url }}" height=200 width=300 alt="{{ project.title }}">
+                </a>
+                <div class="card-body">
+                    <h3 class="card-title">{{ project.title }}</h3>
+                    <p class="card-text">{{ project.brief_description }}</p>
+                    <hr>
+                    <a href="{% url 'project_details' slug=project.slug %}" class="btn btn-outline-info">
+                        More details...</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}
+
+{% comment %} 
+Link to the website
+Photos of the website
+
+Advanced: video walk through of the website
+
+Card views look good in this design:
+https://codepen.io/wisnust10/pen/BKjNNR {% endcomment %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Contact Info{% endblock %}
+
+
+{% block content %}
+
+<h2 class="display-4">Contact</h2>
+<form method="post">
+{% csrf_token %}
+{{ form.as_p }}
+<button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{% endblock %}
+
+
+{% comment %} linkedIn
+GitHub
+Email address
+
+
+include icons for github and linkedin
+
+Free user icons:
+// heaps and heaps of icons free to download
+https://www.iconfinder.com/search?q=user&license=2&price=free {% endcomment %}

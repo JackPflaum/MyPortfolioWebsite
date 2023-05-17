@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'jacks_website',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -126,6 +127,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'    # specifies the base URL that will be used to serve up media files
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')    # defines absolute file path where media files will be stored
+
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

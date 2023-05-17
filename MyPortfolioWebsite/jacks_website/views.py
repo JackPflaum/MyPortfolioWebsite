@@ -48,7 +48,8 @@ def contact(request):
             email_message.send()
             
             # message() add confirmation message on web page
-            return redirect('contact')
+            projects = Project.objects.all()
+            return render(request, 'home.html', {'projects': projects})
     else:
         projects = Project.objects.all()
         form = ContactForm()

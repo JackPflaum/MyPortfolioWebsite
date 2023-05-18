@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title%}Email Successful{% endblock %}
+
+{% block content %}
+<h1 class="display-4">Thank you!</h1>
+<p>I will get back to you as soon as possible.</p>
+<a href="{% url 'projects' %}" class="btn btn-outline-info">Projects</a>
+
+{% endblock %}

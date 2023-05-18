@@ -3,6 +3,7 @@ from django.http import request
 from .forms import ContactForm
 from .models import Project
 from django.core.mail import EmailMessage
+from django.contrib import messages
 
 def home(request):
     projects = Project.objects.all()
@@ -28,6 +29,8 @@ def project_details(request, slug):
 
 
 def contact(request):
+    projects = Project.objects.all()
+
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -38,7 +41,8 @@ def contact(request):
 
             # construct email message
             subject= f'Porfolio message from {name}'
-            from_email = 'admin@example.com'
+            from_email = email
+            # from_email = 'admin@example.com'
             to_email = ['admin@example.com']
             # from_email = settings.CONTACT_EMAIL
             # to_email = settings.ADMIN_EMAIL
@@ -48,10 +52,10 @@ def contact(request):
             email_message.send()
             
             # message() add confirmation message on web page
-            projects = Project.objects.all()
-            return render(request, 'home.html', {'projects': projects})
+            messages.success(request, 'Thank you for the message. I will get back to you shortly.')
+
+            return render(request, 'projects.html', {'projects': projects})
     else:
-        projects = Project.objects.all()
         form = ContactForm()
         return render(request, 'contact.html', {'form': form, 'projects': projects})
     

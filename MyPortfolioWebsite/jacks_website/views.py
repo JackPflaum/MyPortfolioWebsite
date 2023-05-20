@@ -30,9 +30,8 @@ def project_details(request, slug):
 
 def contact(request):
     projects = Project.objects.all()
-
+    form = ContactForm(request.POST or None)
     if request.method == 'POST':
-        form = ContactForm(request.POST)
         if form.is_valid():
             # get the form data
             name = form.cleaned_data['name']    # possibly change to cleaned_data.get() and creating validationerror?
@@ -51,12 +50,14 @@ def contact(request):
             # send the email
             email_message.send()
             
-            # message() add confirmation message on web page
+            # confirmation message on web page
             messages.success(request, 'Thank you for the message. I will get back to you shortly.')
 
             return render(request, 'projects.html', {'projects': projects})
+        else:
+            messages.warning(request, 'Invalid email. Try again please.')
+            return render(request, 'contact.html', {'form': form, 'projects': projects})
     else:
-        form = ContactForm()
         return render(request, 'contact.html', {'form': form, 'projects': projects})
     
 

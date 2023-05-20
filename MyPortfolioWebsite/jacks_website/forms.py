@@ -6,17 +6,9 @@ class ContactForm(forms.Form):
     name = forms.CharField(max_length=100,
                            widget=forms.TextInput(attrs={'placeholder': 'Enter your name'}))
     email = forms.EmailField(max_length=255,
-                             widget=forms.TextInput(attrs={'placeholder': 'Enter your email'}),
-                             validators=[validators.EmailValidator(message='Invalid email')])
+                             widget=forms.TextInput(attrs={'placeholder': 'Enter your email'}))
     message = forms.CharField(max_length=2000,
                               widget=forms.Textarea(attrs={'placeholder': 'Enter your message'}))
-    
-    # def clean_email(self):
-    #     email = self.cleaned_data['email']
-    #     if not validate_email(email):
-    #         raise forms.ValidationError('Invalid email address. Please enter a valid email')
-    #     return email
-
 
 
 # good example and how to set up email:

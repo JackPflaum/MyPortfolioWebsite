@@ -1,0 +1,136 @@
+/* -------------------Universal style for MyPortfolioWebsite -------------------*/
+body {
+    font-family: Arial, sans-serif;
+    background-color: #FFF2F2;
+}
+
+ul.custom-list {
+    list-style-type: none;
+    padding-left: 15px;
+}
+
+ul.custom-list li::before {
+    color: #7286D3;
+    content: "•";
+    margin-right: 10px;
+}
+
+.btn-custom {
+    background-color: transparent;
+    color: #7286D3;
+    border: 2px solid #7286D3;
+    border-radius: 20px;
+    transition: 0.3s ease;
+
+  }
+
+.btn-custom:hover {
+    background-color: #7286D3;
+    color: #FFF2F2;
+
+}
+
+/* -------------------Navigation bar -------------------*/
+.navbar-light .navbar-nav .nav-link {
+    color: #7286D3;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-image: url('/static/images/portrait.jpg');
+    background-size: cover;
+    background-position: center;
+    margin-right: 10px;
+}
+
+#nav-logo-text-color {
+    color: #7286D3;
+}
+
+#nav-logo-text-color:hover {
+    color: black;
+}
+
+/*------------------- Home page -------------------*/
+.header-text {
+    margin-top: 20%;
+}
+
+.header-text span {
+    color: #7286D3;
+}
+
+#home-image {
+    margin-top: 5%;
+    max-width: 70%;
+    height: auto;
+}
+
+
+/*------------------- About page -------------------*/
+.container.about-page {
+    margin-top: 2%;
+}
+
+.about-page span {
+    color: #7286D3;
+}
+
+#about-me-image {
+    max-width: 60%;
+    height: auto;
+    border-radius: 5%;
+}
+
+/*------------------- Projects page -------------------*/
+
+
+
+/*------------------- Project details page -------------------*/
+
+
+
+/*------------------- Contact page -------------------*/
+
+
+
+/*------------------- Resume page -------------------*/
+
+.container.resume-page div {
+    margin-top: 10px;
+}
+
+.container.resume-page p {
+    margin-bottom: 30px;
+}
+
+#text-align {
+    text-align: justify;
+}
+
+.container.resume-page h1,
+.container.resume-page h2,
+.container.resume-page h3 {
+    color: #7286D3;
+}
+
+.email-icon {
+    margin-right: 5px;
+}
+
+.github-icon {
+    color: black;
+    margin-right: 5px;
+}
+
+.linkedin-icon {
+    color: #0A66C2;
+    margin-right: 5px;
+}

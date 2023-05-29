@@ -8,7 +8,7 @@ class ContactForm(forms.Form):
     email = forms.EmailField(max_length=255,
                              widget=forms.TextInput(attrs={'placeholder': 'Enter your email'}))
     message = forms.CharField(max_length=2000,
-                              widget=forms.Textarea(attrs={'placeholder': 'Enter your message'}))
+                              widget=forms.Textarea(attrs={'placeholder': 'Enter your message', 'rows': 7}))
 
 
 # good example and how to set up email:

@@ -7,43 +7,119 @@
 
 
 {% block content %}
-<div class="container">
-    <a href="{% static 'Resume_Jack Pflaum.pdf' %}" class="btn btn-outline-info" style="margin-top: 10px;" download>Download Resume</a>
-    <div style="border: 1px solid black; border-radius: 10px; padding: 10px; margin-top: 10px;">
-    <h1>Resume</h1>
-    <h3>Jack Pflaum</h3>
-    <br>
-    <h3>Professional Summary</h3>
-    <p class="text-justify">As a career changer from laboratory technician to computer programmer, I am excited to bring my analytical skills and problem-solving abilities to a new field. With a Certificate 4 in Information Technology (Programming) and a Bachelor of Science in Chemistry and Sustainable Energy Management, I have developed a solid foundation in Python and Django, as well as some knowledge of HTML and Bootstrap.
-        My passion for programming stems from my curiosity and desire to understand how things work. I am constantly seeking to learn new programming skills and approaches to problem-solving, which has driven me to become proficient in using Visual Studio Code and Github to save my personal projects.
-        As I transition into a career as a backend developer, I am confident that my experience in laboratory work has provided me with transferrable skills that will prove valuable in my new role. My ability to analyze data and troubleshoot problems will be assets as I work to develop robust and efficient backend systems.
-        Overall, I am a driven and enthusiastic individual with a strong work ethic and a commitment to continuous learning. I look forward to bringing my skills and passion to a new career in programming.
-    </p>
-    <br>
-    <h3>Professional Experience</h3>
-    <h5>Intertek – Exploration & Production:</h5>
-    <h6>Laboratory Technician  (2014 – Present)</h6>
-    <p class="text-justify">Sample preparation, solvent extraction, GCMS oil compositional analysis, GC gas
-        compositional analysis, water anion and cation analysis, glycol purities and impurities. Laboratory
-        equipment maintenance and troubleshooting. Performing reagent stock count and laboratory cleanliness.
-        Teaching new employees how to perform analysis's and operate analytical equipment.
-    </p>
-    <br>
-    <h5>Offshore Work Experience:</h5>
-    <h5>Inpex, Ichthys Venturer FPSO</h5>
-    <h6>Offshore Laboratory Technician (October 2018 – August 2019)</h6>
-    <p class="text-justify">Routine and Adhoc sampling and testing on production products and chemicals.
-        Entering data into Laboratory Information Management System (LIMS). Maintaining Laboratory reagents
-        and equipment. Shift handover and coordinating with Operators for sampling out in the field.
-    </p>
-    <br>
-    <h5>Woodside, North Rankin Complex</h5>
-    <h6>Offshore Laboratory Technician (November 2019 – January 2021)</h6>
-    <p class="text-justify">Routine oil in water testing on produced water samples.
-        Participating in daily safety toolbox meetings.
-    </p>
+
+<div class="container resume-page">
+    <div style="margin-bottom: 10px;">
+        <a href="{% static 'Resume_Jack Pflaum.pdf' %}" class="btn btn-custom" download>Download Resume</a>
+    </div>
+    
+    <div class="row">
+        <div class="col-lg-4 col-sm-12">
+            <a class="unclickable-link">
+                <i class="fas fa-envelope email-icon"></i>jackpflaum@gmail.com
+            </a>
+        </div>
+            <div class="col-lg-4 col-sm-12">
+            <a href="https://github.com/JackPflaum" target="_blank">
+                <i class="fab fa-github github-icon"></i>https://github.com/JackPflaum
+            </a>
+        </div>
+            <div class="col-lg-4 col-sm-12">
+            <a href="https://au.linkedin.com/in/jackpflaum" target="_blank">
+                <i class="fab fa-linkedin linkedin-icon"></i>https://au.linkedin.com/in/jackpflaum
+            </a>
+        </div>
+    </div>
+
+    <div>
+        <h1>Resume</h1>
+        <h2 style="margin-bottom:25px;">Jack Pflaum</h2>
+        <h3>Professional Summary</h3>
+        <p id="text-align">As a career changer from laboratory technician to computer programmer, I am excited to bring my analytical skills and problem-solving abilities to a new field. With a Certificate 4 in Information Technology (Programming) and a Bachelor of Science in Chemistry and Sustainable Energy Management, I have developed a solid foundation in Python and Django, as well as some knowledge of HTML and Bootstrap.
+            My passion for programming stems from my curiosity and desire to understand how things work. I am constantly seeking to learn new programming skills and approaches to problem-solving, which has driven me to become proficient in using Visual Studio Code and Github to save my personal projects.
+            As I transition into a career as a backend developer, I am confident that my experience in laboratory work has provided me with transferrable skills that will prove valuable in my new role. My ability to analyze data and troubleshoot problems will be assets as I work to develop robust and efficient backend systems.
+            Overall, I am a driven and enthusiastic individual with a strong work ethic and a commitment to continuous learning. I look forward to bringing my skills and passion to a new career in programming.
+        </p>
+    </div>
+        
+    <div>
+        <h3>Professional Experience</h3>
+        <div class="d-flex flex-column flex-sm-row align-items-start justify-content-between">
+            <h5>Intertek – Exploration & Production</h5>
+            <h6>Laboratory Technician  (2014 – Present)</h6>
+        </div>   
+        <p id="text-align">Sample preparation, solvent extraction, GCMS oil compositional analysis, GC gas
+            compositional analysis, water anion and cation analysis, glycol purities and impurities. Laboratory
+            equipment maintenance and troubleshooting. Performing reagent stock count and laboratory cleanliness.
+            Teaching new employees how to perform analysis's and operate analytical equipment.
+        </p>
+    </div>
+
+    <div>
+        <h3>Offshore Work Experience</h3>
+        <div class="d-flex flex-column flex-sm-row align-items-start justify-content-between">
+            <h5>Inpex, Ichthys Venturer FPSO</h5>
+            <h6>Laboratory Technician (Oct 2018 – Aug 2019)</h6>
+        </div>   
+        <p id="text-align">Routine and Adhoc sampling and testing on production products and chemicals.
+            Entering data into Laboratory Information Management System (LIMS). Maintaining Laboratory reagents
+            and equipment. Shift handover and coordinating with Operators for sampling out in the field.
+        </p>
+    </div>
+
+    <div>
+        <div class="d-flex flex-column flex-sm-row align-items-start justify-content-between">
+            <h5>Woodside, North Rankin Complex</h5>
+            <h6>Laboratory Technician (Nov 2019 – Jan 2021)</h6>
+        </div>   
+        <p>Routine oil in water testing on produced water samples.
+            Participating in daily safety toolbox meetings.
+        </p>
+    </div>
+    
+    <div>
+        <h3>Versatile Skillset</h3>
+        <ul class="custom-list">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-md-8">
+            <h3>Education</h3>
+            <h5>ICT40120 - Certificate IV in Information Technology (Programming)</h6>
+            <p>Upskilled (Feb 2021 – Oct 2022)</p>
+            <h5>Bachelor of Science (Chemistry and Sustainable Energy Management)</h5>
+            <p>Murdoch University (2010 – 2013)</p>
+            <h5>Western Australian Certificate of Education (WACE)</h5>
+            <p>Gilmore College (2009 TER 80.15)</p>
+        </div>
+        <div class="col-12 col-md-4">
+            <h3>Skills</h3>
+            <ul class="custom-list">
+                <li>Python</li>
+                <li>Django</li>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>Bootstrap</li>
+                <li>SQL</li>
+                <li>Visual Studio Code</li>
+                <li>Github</li>
+            </ul>
+        </div>
+    </div>
+
+    <div>
+        <h3>Academic Awards</h3>
+        <h5>Nicholas Searcy Prize in Organic Chemistry</h6>
+        <p>Murdoch University – Awarded for the Best Academic Performance in ‘Molecular Design’ (2012)</p>
+    </div>
 </div>
-</div>
+
 
 
 

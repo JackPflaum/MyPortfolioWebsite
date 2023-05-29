@@ -7,9 +7,8 @@
 
 {% block content %}
 
-<h3 class="text-center display-4">Projects</h3>
+<h1 class="text-center">Projects</h1>
 <p class="text-center">Here is some of my latest work</p>
-<hr>
 <div class="container">
     <div class="row">
         {% for project in projects %}
@@ -22,7 +21,7 @@
                     <h3 class="card-title">{{ project.title }}</h3>
                     <p class="card-text text-justify">{{ project.brief_description }}</p>
                     <hr>
-                    <a href="{% url 'project_details' slug=project.slug %}" class="btn btn-outline-info">
+                    <a href="{% url 'project_details' slug=project.slug %}" class="btn btn-custom">
                         More details...</a>
                 </div>
             </div>

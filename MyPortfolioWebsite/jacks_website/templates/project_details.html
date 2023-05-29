@@ -5,14 +5,14 @@
 {% block title %}{{ project.title }}{% endblock %}
 
 {% block content %}
-<h3 class="text-center display-4">{{ project.title }}</h3>
+<h1 class="text-center">{{ project.title }}</h1>
 
 <div class="container">
     <div class="row flex-column-reverse flex-md-row"> 
         <div class="col-md-6 d-flex flex-column justify-content-center">
             <p class="text-justify">{{ project.details }}</p>
-            <p><a href="#" class="btn btn-outline-info">Visit The Site</a></p>
-            <p><a href="{{ project.github_url }}" target="_blank" class="btn btn-outline-info">Github repository</a></p>
+            <p><a href="#" class="btn btn-custom">Visit The Site</a></p>
+            <p><a href="{{ project.github_url }}" target="_blank" class="btn btn-custom">Github repository</a></p>
         </div>
         <div class="col-md-6 d-flex justify-content-center">
             <img src="{{ project.image.url }}" alt="{{ project.title }}" class="img-fluid">

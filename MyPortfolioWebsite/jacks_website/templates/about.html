@@ -6,8 +6,24 @@
 
 
 {% block content %}
-<h2 class="display-4">About</h2>
-<p></p>
+<div class="container about-page">
+    <div class="row">
+        <div class="col-md-6 d-flex align-items-center justify-content-center">
+            <img class="img-fluid" src="{% static 'images/Jack_in_suit.jpg' %}" alt="Jack Pflaum Portrait"  id="about-me-image">
+        </div>
+        <div class="col-md-6">
+            <header>
+                <h1>About Me</h1>
+            </header>
+            <p>As an aspiring <span>back-end web developer</span> from Perth, Australia, I bring a unique perspective to the world of programming with my <span>background in chemistry</span>. I leverage my analytical skills and attention to detail to write efficient and maintainable code that powers the back-end of web applications.</p>
+            <p>With a <span>Certificate IV in Programming</span> and experience with <span>Python and the Django framework</span>, I have the technical skills to develop robust and scalable web applications. My passion for programming and problem-solving drives me to continuously learn and improve my skills.</p>
+            <p>I'm excited to showcase my projects and demonstrate my proficiency in back-end web development. Browse my portfolio to see examples of my work and learn more about my programming journey.</p>
+            <p>Thank you for visiting my website, and I look forward to connecting with you!</p>
+            <a href="{% url 'projects' %}" class="btn btn-custom">View my work</a>
+            <a href="{% url 'resume' %}" class="btn btn-custom">Resume</a>
+        </div>
+    </div>
+</div>
 
 
 

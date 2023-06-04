@@ -68,8 +68,7 @@ ul.custom-list li::before {
 }
   
 .home-header {
-    margin-right: 20px;
-    margin-bottom: 20px;
+    padding-right: 20px;
 }
 
 .home-header span {
@@ -85,35 +84,75 @@ ul.custom-list li::before {
   
 @media (max-width: 1024px) {
     #home-image {
-      max-width: 70%; /* Decrease the maximum width of the image to 50% of its container for screens with a maximum width of 768px */
+      max-width: 70%; /* Decrease the maximum width of the image to 70% of its container for screens with a maximum width of 1024px */
     }
   
   
     .home-header {
-      order: 1; /* Change the order of the heading to 2, making it appear after the image */
-      margin-right: 0px;
+      order: 1; /* Change the order of the heading to 1, making it appear after the image */
+      padding: 0 0 20px 0; /*padding on the bottom*/
       text-align: center;
     }
   
     .home-image-container {
-      order: 2; /* Change the order of the image to 1, making it appear before the heading */
+      order: 2; /* Change the order of the image to 2, making it appear before the heading */
     }
   }
 
 
 /*------------------- About page -------------------*/
-.container.about-page {
-    margin-top: 2%;
+.about-me-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: justify;
+    height: 80vh;
 }
 
-.about-page span {
+.about-me-header {
+    flex-grow: 1; /*flex items will grow relative to other flex items when there is extra space available*/
+    flex-shrink: 1; /* flex items will shrink relative to other items when there is lack of space*/
+    flex-basis: 50%; /*take up to 50% of available space within flex container*/
+    padding-right: 40px;
+}
+
+.about-me-image-container {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 50%;
+}
+
+.about-me-header span {
     color: #7286D3;
 }
 
 #about-me-image {
-    max-width: 60%;
+    max-width: 300px;
     height: auto;
+    margin: 0 auto;
+    display: block;
     border-radius: 5%;
+}
+
+@media (max-width: 1024px) {
+    #about-me-image {
+        max-width: 50%;
+    }
+    
+    .about-me-header {
+        order: 1;
+        flex-basis: 100%; /*take up to 100% of available space within flex container and push other items to next line*/
+        padding: 0 10px 20px 10px; /*padding on the right, bottom and left*/
+    }
+
+    .about-me-header h1 {
+        text-align: center;
+    }
+
+    .about-me-image-container {
+        order: 2;
+    }
 }
 
 /*------------------- Projects page -------------------*/

@@ -59,19 +59,46 @@ ul.custom-list li::before {
 }
 
 /*------------------- Home page -------------------*/
-.header-text {
-    margin-top: 20%;
+.home-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center the flex items horizontally */
+    align-items: center; /* Center the flex items vertically */
+    height: 80vh;
+}
+  
+.home-header {
+    margin-right: 20px;
+    margin-bottom: 20px;
 }
 
-.header-text span {
+.home-header span {
     color: #7286D3;
 }
-
+  
 #home-image {
-    margin-top: 5%;
-    max-width: 70%;
+    max-width: 400px;
     height: auto;
+    margin: 0 auto; /* Center the image horizontally */
+    display: block; /* Center the image within its container */
 }
+  
+@media (max-width: 1024px) {
+    #home-image {
+      max-width: 70%; /* Decrease the maximum width of the image to 50% of its container for screens with a maximum width of 768px */
+    }
+  
+  
+    .home-header {
+      order: 1; /* Change the order of the heading to 2, making it appear after the image */
+      margin-right: 0px;
+      text-align: center;
+    }
+  
+    .home-image-container {
+      order: 2; /* Change the order of the image to 1, making it appear before the heading */
+    }
+  }
 
 
 /*------------------- About page -------------------*/

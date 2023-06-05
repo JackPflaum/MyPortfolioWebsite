@@ -6,13 +6,11 @@ from django.core.mail import EmailMessage
 from django.contrib import messages
 
 def home(request):
-    projects = Project.objects.all()
-    return render(request, 'home.html', {'projects': projects})
+    return render(request, 'home.html', {})
 
 
 def about(request):
-    projects = Project.objects.all()    # for navbar link 'Projects' dropdown-menu
-    return render(request, 'about.html', {'projects': projects})
+    return render(request, 'about.html', {})
 
 
 def projects(request):
@@ -23,13 +21,11 @@ def projects(request):
 
 def project_details(request, slug):
     project = get_object_or_404(Project, slug=slug)
-    projects = Project.objects.all()    # for navbar link 'Projects' dropdown-menu
-    context = {'project': project, 'projects': projects}
+    context = {'project': project}
     return render(request, 'project_details.html', context)
 
 
 def contact(request):
-    projects = Project.objects.all()
     form = ContactForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
@@ -53,14 +49,13 @@ def contact(request):
             # confirmation message on web page
             messages.success(request, 'Thank you for the message. I will get back to you shortly.')
 
-            return render(request, 'projects.html', {'projects': projects})
+            return render(request, 'home.html', {})
         else:
-            messages.warning(request, 'Invalid email. Try again please.')
-            return render(request, 'contact.html', {'form': form, 'projects': projects})
+            messages.warning(request, 'Invalid email. Please try again.')
+            return redirect('home')
     else:
-        return render(request, 'contact.html', {'form': form, 'projects': projects})
+        return render(request, 'contact.html', {'form': form})
     
 
 def resume(request):
-    projects = Project.objects.all()    # for navbar link 'Projects' dropdown-menu
-    return render(request, 'resume.html', {'projects': projects})
+    return render(request, 'resume.html', {})

@@ -9,6 +9,11 @@ ul.custom-list {
     padding-left: 15px;
 }
 
+ul.custom-list li {
+    display: flex;
+    align-items: flex-start; /* Align items at the start (top) of the flex container */
+}
+
 ul.custom-list li::before {
     color: #7286D3;
     content: "•";
@@ -223,7 +228,7 @@ ul.custom-list li::before {
     margin-top: 10px;
 }
 
-.resume-heading {
+.resume-heading span {
     color: black;
 }
 

@@ -30,6 +30,7 @@ ul.custom-list li::before {
 
 }
 
+
 /* -------------------Navigation bar -------------------*/
 .navbar-light .navbar-nav .nav-link {
     color: #7286D3;
@@ -220,6 +221,10 @@ ul.custom-list li::before {
 
 .container.resume-page div {
     margin-top: 10px;
+}
+
+.resume-heading {
+    color: black;
 }
 
 /*------potentially put each resume section in a card------------*/

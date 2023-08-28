@@ -8,7 +8,8 @@ class Project(models.Model):
     details = models.TextField()
     website_url = models.URLField(blank=True)
     github_url = models.URLField(blank=True)
-    image = models.ImageField(upload_to='images/projects/')
+    image = models.ImageField(upload_to='images/')
+    video = models.FileField(upload_to='videos/', null=True, blank=True)
     slug = models.SlugField(unique=True, max_length=255, null=True)
 
     def __str__(self):

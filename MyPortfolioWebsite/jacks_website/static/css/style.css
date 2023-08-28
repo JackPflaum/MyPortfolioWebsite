@@ -171,6 +171,10 @@ ul.custom-list li::before {
 
 /*------------------- Project details page -------------------*/
 
+video {
+    width: 100%;
+    height: auto;
+}
 
 
 /*------------------- Contact page -------------------*/

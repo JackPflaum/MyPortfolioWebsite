@@ -11,12 +11,26 @@
     <div class="row flex-column-reverse flex-md-row"> 
         <div class="col-md-6 d-flex flex-column justify-content-center">
             <p class="text-justify">{{ project.details }}</p>
+
+            {% if project.website_url %}
             <p><a href="#" class="btn btn-custom">Visit The Site</a></p>
+            {% endif %}
+            
             <p><a href="{{ project.github_url }}" target="_blank" class="btn btn-custom">Github repository</a></p>
         </div>
+
+        {% if project.video %}
+        <div class="col-md-6 d-flex justify-content-center">
+            <video controls>
+                <source src="{{ project.video.url }}" type="video/mp4">
+            </video>
+        </div>
+        {% else %}
         <div class="col-md-6 d-flex justify-content-center">
             <img src="{{ project.image.url }}" alt="{{ project.title }}" class="img-fluid">
         </div>
+        {% endif %}
+        
     </div>
 </div>
 
@@ -24,7 +38,7 @@
 
 {% endblock %}
 {% comment %} 
-Detail what the website does. What features it includes. Why I did certain things.
+Detail what the website does. What features it includes. Why I did certain things. what features i would add next.
 
 Link to the website
 Link to github

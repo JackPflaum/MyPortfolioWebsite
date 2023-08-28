@@ -2,21 +2,33 @@
 
 {% load static %}
 
-{% block title %}Projects{% endblock %}
-
-
 {% block content %}
-
 <h1 class="text-center">Projects</h1>
 <p class="text-center">Here is some of my latest work</p>
 <div class="container">
     <div class="row justify-content-center">
         {% for project in projects %}
         <div class="col-lg-6 col-md-8 col-sm-10"> 
-            <div class="card custom-card text-center">
-                <a class="card-link" href="{% url 'project_details' slug=project.slug %}">
-                    <img class="card-img-top" src="{{ project.image.url }}" height=200 width=300 alt="{{ project.title }}">
-                </a>
+
+            <div class="card text-center">
+                <div id="projectCarousel-{{ project.id }}" class="carousel slide" data-ride="carousel">
+                    <div class="inner-carousel">
+                        {% for images in project.images.all %}
+                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                            <img class="card-img-top" src="{{ images.image.url }}" alt="{{ project.title}}">
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <a class="carousel-control-prev" href="#projectCarousel-{{ project.id }}" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#projectCarousel-{{ project.id }}" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+                
                 <div class="card-body">
                     <h3 class="card-title">{{ project.title }}</h3>
                     <p class="card-text text-justify">{{ project.brief_description }}</p>
@@ -29,18 +41,4 @@
         {% endfor %}
     </div>
 </div>
-
-
-
-
-
 {% endblock %}
-
-{% comment %} 
-Link to the website
-Photos of the website
-
-Advanced: video walk through of the website
-
-Card views look good in this design:
-https://codepen.io/wisnust10/pen/BKjNNR {% endcomment %}

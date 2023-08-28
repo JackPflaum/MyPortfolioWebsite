@@ -162,6 +162,11 @@ ul.custom-list li::before {
 }
 
 /*------------------- Projects page -------------------*/
+/*image transition doens't extend beyond card container*/
+.inner-carousel {
+    overflow: hidden;
+}
+
 @media (max-width: 1024px) {
     .card {
         margin-bottom: 20px;

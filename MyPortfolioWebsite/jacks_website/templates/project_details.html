@@ -8,7 +8,7 @@
 <h1 class="text-center">{{ project.title }}</h1>
 
 <div class="container">
-    <div class="row flex-column-reverse flex-md-row"> 
+    <div class="row flex-column-reverse flex-md-row mt-3"> 
         <div class="col-md-6 d-flex flex-column justify-content-center">
             <p class="text-justify">{{ project.details }}</p>
 
@@ -20,15 +20,18 @@
         </div>
 
         {% if project.video %}
-        <div class="col-md-6 d-flex justify-content-center">
+        <div class="col-md-6 d-flex justify-content-center mb-3">
             <video controls>
                 <source src="{{ project.video.url }}" type="video/mp4">
+                Your browser does not support this tag.
             </video>
         </div>
         {% else %}
+        {% for images in project.images.all|slice:"1" %}
         <div class="col-md-6 d-flex justify-content-center">
-            <img src="{{ project.image.url }}" alt="{{ project.title }}" class="img-fluid">
+            <img src="{{ images.image.url }}" alt="{{ project.title }}" class="img-fluid">
         </div>
+        {% endfor %}
         {% endif %}
         
     </div>
@@ -38,12 +41,4 @@
 
 {% endblock %}
 {% comment %} 
-Detail what the website does. What features it includes. Why I did certain things. what features i would add next.
-
-Link to the website
-Link to github
-
-Photos of the website (use bootstrap carousel feature):
-https://getbootstrap.com/docs/4.0/components/carousel/
-
-Advanced: video walk through of the website {% endcomment %}
+Detail what the website does. What features it includes. Why I did certain things. what features i would add next.{% endcomment %}

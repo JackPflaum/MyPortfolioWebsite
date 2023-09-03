@@ -167,6 +167,11 @@ ul.custom-list li::before {
     overflow: hidden;
 }
 
+/* bootstrap image carousel 'previous' and 'next' arrows*/
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    filter: invert(40%);    /*shade of icon*/ 
+}
+
 @media (max-width: 1024px) {
     .card {
         margin-bottom: 20px;

@@ -2,43 +2,62 @@
 
 {% load static %}
 
-{% block title %}{{ project.title }}{% endblock %}
-
 {% block content %}
 <h1 class="text-center">{{ project.title }}</h1>
 
-<div class="container">
+<div class="container project-details-container">
     <div class="row flex-column-reverse flex-md-row mt-3"> 
         <div class="col-md-6 d-flex flex-column justify-content-center">
-            <p class="text-justify">{{ project.details }}</p>
+            <h5>Summary:</h5>
+            <p class="paragraph-separation text-justify">{{ project.summary }}</p>
 
-            {% if project.website_url %}
-            <p><a href="#" class="btn btn-custom">Visit The Site</a></p>
+            {% if project.tools_and_technologies %}
+            <h5>Tools and Technologies:</h5>
+            <ul>
+                {% for tool in project.format_dot_points %}
+                <li>{{ tool }}</li>
+                {% endfor %}
+            </ul>
             {% endif %}
-            
-            <p><a href="{{ project.github_url }}" target="_blank" class="btn btn-custom">Github repository</a></p>
+
+            {% if project.challenges %}
+            <h5>Build Process:</h5>
+            <p class="paragraph-separation text-justify">{{ project.building_process }}</p>
+            {% endif %}
         </div>
 
-        {% if project.video %}
-        <div class="col-md-6 d-flex justify-content-center mb-3">
-            <video controls>
-                <source src="{{ project.video.url }}" type="video/mp4">
-                Your browser does not support this tag.
-            </video>
+        <div class="col-md-6">
+            <div>
+                {% if project.video %}
+                <video controls >
+                    <source src="{{ project.video.url }}" type="video/mp4">
+                    Your browser does not support this tag.
+                </video>
+                {% else %}
+                    {% for images in project.images.all|slice:"1" %}
+                    <img src="{{ images.image.url }}" alt="{{ project.title }}" class="img-fluid">
+                    {% endfor %}
+                {% endif %}
+
+                {% if project.website_url %}
+                <p><a href="{{ project.website_url.url }}" class="btn btn-custom">Visit The Site</a></p>
+                {% endif %}
+            
+                <p><a href="{{ project.github_url }}" target="_blank" class="btn btn-custom">Github repository</a></p>
+            </div>
+
+            <div>
+                {% if project.challenges %}
+                <h5>Challenges:</h5>
+                <p class="paragraph-separation text-justify">{{ project.challenges }}</p>
+                {% endif %}
+
+                {% if project.improvements %}
+                <h5>Improvements:</h5>
+                <p class="paragraph-separation text-justify">{{ project.improvements }}
+                {% endif %}
+            </div>
         </div>
-        {% else %}
-        {% for images in project.images.all|slice:"1" %}
-        <div class="col-md-6 d-flex justify-content-center">
-            <img src="{{ images.image.url }}" alt="{{ project.title }}" class="img-fluid">
-        </div>
-        {% endfor %}
-        {% endif %}
-        
     </div>
 </div>
-
-
-
 {% endblock %}
-{% comment %} 
-Detail what the website does. What features it includes. Why I did certain things. what features i would add next.{% endcomment %}

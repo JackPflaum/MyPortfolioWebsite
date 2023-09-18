@@ -186,6 +186,15 @@ video {
     height: auto;
 }
 
+/*heading colours*/
+.project-details-container h5 {
+    color: #7286D3;
+}
+
+/*create line separation between paragraphs for model TextField*/
+.paragraph-separation {
+    white-space: pre-line;
+}
 
 /*------------------- Contact page -------------------*/
 .contact-container {
@@ -259,7 +268,11 @@ video {
     margin-bottom: 30px;
 }
 
-#text-align {
+.resume-summary p {
+    text-align: justify;
+}
+
+.text-align {
     text-align: justify;
 }
 

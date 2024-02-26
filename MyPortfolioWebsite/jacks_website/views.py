@@ -22,7 +22,7 @@ def projects(request):
 def project_details(request, slug):
     project = get_object_or_404(Project, slug=slug)
     context = {'project': project}
-    return render(request, 'project_details.html', context)
+    return render(request, 'project_details_mobile.html', context)
 
 
 def contact(request):

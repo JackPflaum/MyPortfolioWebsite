@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<h1 class="text-center">{{ project.title }}</h1>
+
+<div class="container project-details-container" style="margin-bottom: 100px;">
+    <div class="row mt-3"> 
+        <div class="col-md-12 justify-content-center">
+            <div>
+                {% if project.video %}
+                <video controls class="shadow-lg">
+                    <source src="{{ project.video.url }}" type="video/mp4">
+                    Your browser does not support this tag.
+                </video>
+                {% else %}
+                    {% for images in project.images.all|slice:"1" %}
+                    <img src="{{ images.image.url }}" alt="{{ project.title }}" class="img-fluid">
+                    {% endfor %}
+                {% endif %}
+
+                <div class="d-flex mt-2">
+                    {% if project.website_url %}
+                    <p class="mr-2">
+                        <a href="{{ project.website_url.url }}" class="btn btn-custom">Visit The Site</a>
+                    </p>
+                    {% endif %}
+    
+                    {% if project.github_url %}
+                    <p class="mt-2">
+                        <a href="{{ project.github_url }}" target="_blank" class="btn btn-custom">Github repository</a>
+                    </p>
+                    {% endif %}
+                </div>
+            </div>
+            <div>
+                <h5>Summary:</h5>
+                <p class="paragraph-separation text-justify">{{ project.summary }}</p>
+
+                {% if project.tools_and_technologies %}
+                <h5>Tools and Technologies:</h5>
+                <ul>
+                    {% for tool in project.format_dot_points %}
+                    <li>{{ tool }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+
+                {% if project.challenges %}
+                <h5>Build Process:</h5>
+                <p class="paragraph-separation text-justify">{{ project.building_process }}</p>
+                {% endif %}
+            </div>
+            <div>
+                {% if project.challenges %}
+                <h5>Challenges:</h5>
+                <p class="paragraph-separation text-justify">{{ project.challenges }}</p>
+                {% endif %}
+    
+                {% if project.improvements %}
+                <h5>Improvements:</h5>
+                <p class="paragraph-separation text-justify">{{ project.improvements }}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

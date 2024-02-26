@@ -50,7 +50,7 @@ ul.custom-list li::before {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-image: url('/static/images/portrait.jpg');
+    background-image: url('/static/images/jack_headshot.jpg');
     background-size: cover;
     background-position: center;
     margin-right: 10px;
@@ -295,3 +295,36 @@ video {
     color: #0A66C2;
     margin-right: 5px;
 }
+
+/*resume divs fade into view as user scrolls down the page*/
+@keyframes shrink {
+    from {
+        scale: 0.5;
+        opacity: 0;
+    }
+    to {
+        scale: 1;
+        opacity: 1;
+    }
+}
+
+.animate-element, p, li, img {
+    animation-timeline: view(block);
+    animation-name: shrink;
+    animation-range: entry -10% contain 10%;
+}
+/* 
+.animate-element {
+    scale: 0.8;
+    opacity: 0;
+    animation: animate-element linear;
+    animation-timeline: view();
+    animation-range: contain 100px;
+}
+
+@keyframes animate-element {
+    to {
+        scale: 1;
+        opacity: 1;
+    }
+} */

@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv, find_dotenv
-import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -43,7 +42,34 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'jacks_website',
     'widget_tweaks',
+
+    'storages',    # utilising django-storages package for defining storage backend for files
+    'boto3',    # AWS SDK (Software Development Kit) to help python project interact with AWS
 ]
+
+
+# AWS Configuration (using S3 buckets to store media and static files)
+AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+
+# basic AWS storage configuration for Amazon S3
+AWS_STORAGE_BUCKET_NAME = 'jack-pflaum-portfolio-website'
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+AWS_S3_FILE_OVERWRITE = False
+
+# S3 storage settings
+STORAGES = {
+    # media file management (images, user uploads, etc.)
+    'default': {
+        'BACKEND': 'storages.backends.s3boto3.S3Static3Storage',
+    },
+
+    # static file management (CSS, JS, etc.)
+    'staticfiles': {
+        'BACKEND': 'storages.backends.s3boto3.S3StaticStorage',
+    },
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -78,6 +104,8 @@ WSGI_APPLICATION = 'MyPortfolioWebsite.wsgi.application'
 
 
 # Database
+import dj_database_url
+
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 if not DEBUG:
     # production environment PostgreSql
@@ -129,8 +157,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-# WhiteNoise is dedicated module to collect static files for production
+# WhiteNoise is dedicated module to collect static files for production on Render.com
+# I have opted for storing static files in AWS S3 bucket and therefore the below code is
+# commented out as reference if I change my mind in the future.
+"""
 if not DEBUG:
     # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -139,6 +171,7 @@ if not DEBUG:
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 else:
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+"""
 
 MEDIA_URL = '/media/'    # specifies the base URL that will be used to serve up media files
 

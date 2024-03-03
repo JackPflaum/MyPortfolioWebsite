@@ -28,8 +28,12 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['jackpflaum.com', 'www.jackpflaum.com']
-
+if DEBUG:
+    # during development
+    ALLOWED_HOSTS = []
+else:
+    # during production
+    ALLOWED_HOSTS = ['jackpflaum.com', 'www.jackpflaum.com']
 
 # Application definition
 
@@ -48,27 +52,51 @@ INSTALLED_APPS = [
 ]
 
 
-# AWS Configuration (using S3 buckets to store media and static files)
-AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+# AWS Configuration (using S3 buckets to store and access media and static files)
+AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']    # keys for external access to S3 bucket
 AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
-
-# basic AWS storage configuration for Amazon S3
 AWS_STORAGE_BUCKET_NAME = 'jack-pflaum-portfolio-website'
-AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-AWS_S3_FILE_OVERWRITE = False
+AWS_S3_FILE_OVERWRITE = True    # files will be overwritten if names are the same
 
-# S3 storage settings
-STORAGES = {
-    # media file management (images, user uploads, etc.)
-    'default': {
-        'BACKEND': 'storages.backends.s3boto3.S3Static3Storage',
-    },
+# storage of static and media files during development and during production
+if DEBUG:
+    # static and media files stored on local computer during development
 
-    # static file management (CSS, JS, etc.)
-    'staticfiles': {
-        'BACKEND': 'storages.backends.s3boto3.S3StaticStorage',
-    },
-}
+    # Static files (CSS, JavaScript, Images)
+    STATIC_URL = 'static/'
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+    # media files (uploaded images, videos, etc.)
+    MEDIA_URL = '/media/'    # specifies the base URL that will be used to serve up media files
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')    # defines absolute file path where media files will be stored
+else:
+    # static and media files are stored and served from AWS S3 bucket during production
+
+    # Static files (CSS, JavaScript, images)
+    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'    # storage backend for managing static files
+    AWS_S3_CUSTOM_DOMAIN_STATIC = f'static.{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'   # custom domain for serving static files
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN_STATIC}/static/'    # this is where static files will be sent to.
+
+    # Media files (user uploads)
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'    # storage backend for managing media files
+    AWS_S3_CUSTOM_DOMAIN_MEDIA = f'media.{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'    # custom domain for serving media files
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN_MEDIA}/media/'    # this is where user uploaded files will be sent to.
+
+
+# WhiteNoise is dedicated module to collect static files for production on Render.com
+# I have opted for storing static files in AWS S3 bucket and therefore the below code is
+# commented out as reference if I change my mind in the future.
+"""
+if not DEBUG:
+    # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
+    # and renames the files with unique names for each version to support long-term caching
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+else:
+    STATIC_URL = 'static/'
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+"""
 
 
 MIDDLEWARE = [
@@ -104,20 +132,29 @@ WSGI_APPLICATION = 'MyPortfolioWebsite.wsgi.application'
 
 
 # Database
+# running PostgreSQL on local computer and host site (Render.com)
 import dj_database_url
 
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 if not DEBUG:
-    # production environment PostgreSql
+    # production environment PostgreSQL
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
 else:
-    # development environemnt SqLite
+    # development environemnt PostgreSQL
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
+            # previously running on sqlite database during development
+            # 'ENGINE': 'django.db.backends.sqlite3',
+            # 'NAME': BASE_DIR / 'db.sqlite3',
+            
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.environ.get('DB_NAME'),
+            'USER': os.environ.get('DB_USER'),
+            'PASSWORD': os.environ.get('DB_PASSWORD'),
+            'HOST': os.environ.get('DB_HOST', '127.0.0.1'),
+            'PORT': os.environ.get('DB_PORT', 5432),
         }
     }
 
@@ -151,32 +188,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
-
-STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-# WhiteNoise is dedicated module to collect static files for production on Render.com
-# I have opted for storing static files in AWS S3 bucket and therefore the below code is
-# commented out as reference if I change my mind in the future.
-"""
-if not DEBUG:
-    # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
-    # and renames the files with unique names for each version to support long-term caching
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-else:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-"""
-
-MEDIA_URL = '/media/'    # specifies the base URL that will be used to serve up media files
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')    # defines absolute file path where media files will be stored
-
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

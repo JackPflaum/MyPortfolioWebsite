@@ -80,7 +80,7 @@ else:
 
     # Media files (user uploads)
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'    # storage backend for managing media files
-    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'    # this is where user uploaded files will be sent to and located
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/images/'    # this is where user uploaded files will be sent to and located
 
 
 # WhiteNoise is dedicated module to collect static files for production on Render.com

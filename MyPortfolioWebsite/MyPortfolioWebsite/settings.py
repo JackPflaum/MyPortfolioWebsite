@@ -74,12 +74,12 @@ else:
 
     # Static files (CSS, JavaScript, images)
     STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'    # storage backend for managing static files
-    AWS_S3_CUSTOM_DOMAIN_STATIC = f'static.{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'   # custom domain for serving static files
+    AWS_S3_CUSTOM_DOMAIN_STATIC = f'static.{AWS_STORAGE_BUCKET_NAME}.s3.ap-southeast-2.amazonaws.com'   # custom domain for serving static files
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN_STATIC}/static/'    # this is where static files will be sent to.
 
     # Media files (user uploads)
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'    # storage backend for managing media files
-    AWS_S3_CUSTOM_DOMAIN_MEDIA = f'media.{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'    # custom domain for serving media files
+    AWS_S3_CUSTOM_DOMAIN_MEDIA = f'media.{AWS_STORAGE_BUCKET_NAME}.s3.ap-southeast-2.amazonaws.com'    # custom domain for serving media files
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN_MEDIA}/media/'    # this is where user uploaded files will be sent to.
 
 

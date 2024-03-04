@@ -54,7 +54,8 @@ INSTALLED_APPS = [
 ]
 
 
-# AWS Configuration (using S3 buckets to store and access media and static files)
+########### AWS Configuration (using S3 buckets to store and access media and static files) ###########
+
 AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']    # keys for external access to S3 bucket
 AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
 AWS_STORAGE_BUCKET_NAME = 'jack-pflaum-portfolio-website'
@@ -101,7 +102,8 @@ else:
 """
 
 
-# Email configuration for contact form
+########### Email configuration for contact form ###########
+
 if DEBUG:
     # development configuration
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -144,7 +146,8 @@ TEMPLATES = [
 WSGI_APPLICATION = 'MyPortfolioWebsite.wsgi.application'
 
 
-# Database
+###########Database Configuration#################
+
 # running PostgreSQL on local computer and host site (Render.com)
 import dj_database_url
 
@@ -156,6 +159,16 @@ if not DEBUG:
     }
 else:
     # development environemnt PostgreSQL
+
+    # use line below in terminal to dump local PostgreSQL database data to file:
+    # pg_dump -U postgre_username -h postgre_hostname -d db_name -W > datadump.sql
+    # if not encoded in UTF-8 then open in notepad and save in UTF-8 encoding.
+
+    # use line below to seed external render.com PostgreSQL database with datadump.sql file
+    # psql -h render_host -U render_user -d render-database -W -f datadump.sql
+
+    # make sure you are in the location of datadump.sql file when running commands.
+
     DATABASES = {
         'default': {
             # previously running on sqlite database during development

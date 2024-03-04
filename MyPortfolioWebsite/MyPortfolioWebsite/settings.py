@@ -22,6 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# load_dotenv loads environmental variables into os.environ dictionary
 load_dotenv(find_dotenv())
 SECRET_KEY = os.environ['SECRET_KEY']
 
@@ -49,6 +50,7 @@ INSTALLED_APPS = [
 
     'storages',    # utilising django-storages package for defining storage backend for files
     'boto3',    # AWS SDK (Software Development Kit) to help python project interact with AWS
+    'django_ses',    # AWS SES integration with django
 ]
 
 
@@ -99,9 +101,20 @@ else:
 """
 
 
+# Email configuration for contact form
+if DEBUG:
+    # development configuration
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+else:
+    # AWS SES (Simple Email Service) configuration in production (sending user messages to email account)
+    EMAIL_BACKEND = 'django_ses.SESBackend'
+    AWS_SES_REGION_NAME = 'ap-southeast-2'
+    AWS_SES_REGION_ENDPOINT = 'email.ap-southeast-2.amazonaws.com'
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',     
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -188,9 +201,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
-
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 # Default primary key field type

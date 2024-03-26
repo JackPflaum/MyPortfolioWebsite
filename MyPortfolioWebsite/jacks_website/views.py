@@ -20,7 +20,7 @@ def about(request):
 
 
 def projects(request):
-    projects = Project.objects.all()
+    projects = Project.objects.all().order_by('title')
     context = {'projects': projects}
     return render(request, 'projects.html', context)
 

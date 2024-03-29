@@ -7,7 +7,7 @@
 
 <div class="container project-details-container">
     <div class="row flex-column-reverse flex-md-row mt-3"> 
-        <div class="col-md-6 d-flex flex-column justify-content-center">
+        <div class="col-md-6 d-flex flex-column justify-content-center" id="first">
             <h5>Summary:</h5>
             <p class="paragraph-separation text-justify">{{ project.summary }}</p>
 
@@ -27,7 +27,7 @@
         </div>
 
         <div class="col-md-6">
-            <div>
+            <div id="second">
                 {% if project.video %}
                 <video controls >
                     <source src="{{ project.video.url }}" type="video/mp4">
@@ -46,7 +46,7 @@
                 <p><a href="{{ project.github_url }}" target="_blank" class="btn btn-custom">Github repository</a></p>
             </div>
 
-            <div>
+            <div id="third">
                 {% if project.challenges %}
                 <h5>Challenges:</h5>
                 <p class="paragraph-separation text-justify">{{ project.challenges }}</p>

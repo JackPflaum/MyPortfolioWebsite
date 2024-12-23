@@ -308,23 +308,16 @@ video {
     }
 }
 
-.animate-element, p, li, img {
+.animate-element, p, li, img, div {
     animation-timeline: view(block);
     animation-name: shrink;
     animation-range: entry -10% contain 10%;
 }
-/* 
-.animate-element {
-    scale: 0.8;
-    opacity: 0;
-    animation: animate-element linear;
-    animation-timeline: view();
-    animation-range: contain 100px;
+
+div:not(#exclude-me) {
+    animation-name: none !important;
 }
 
-@keyframes animate-element {
-    to {
-        scale: 1;
-        opacity: 1;
-    }
-} */
+.bold-text {
+    font-weight: bold;
+}
